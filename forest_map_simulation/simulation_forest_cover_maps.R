@@ -15,7 +15,6 @@ forest.map<-function(pixel,model,proportion){
   to <- 1
   x.seq <- seq(from, to, length=pixel) 
   y.seq <- seq(from, to, length=pixel)
-  r=GridTopology(c(0,0),c(1,1),c(pixel,pixel))
   #Create RandomField
   simu<- RFsimulate(model, x=x.seq, y=y.seq)
   map<-raster(simu)
