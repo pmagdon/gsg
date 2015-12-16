@@ -34,7 +34,7 @@ RFoptions(seed=NA)
 #RFgetModelNames(type="positive definite")
 
 #Here we use a Cauchy Co-Variance Model: low alpha -> high fragmentation 
-model <- RMgencauchy(alpha=0.5,beta=1) 
+model <- RMgencauchy(alpha=0.5,beta=0.3) 
 
 #Define the side length of the map in pixel number. We assume a quadratic map
 pixel<-400
