@@ -19,7 +19,9 @@ loadBoundary = function (shapefile,country_code,adm_level){
   {
     # Load boundary from own Shapefile
    shapes = readShapeSpatial(shapefile)
-   shape.geo = spTransform(shapes, CRS("+init=epsg:4326"))
-   return (shape.geo)
+   # Assign projection (longlat +datum=WGS84)
+   proj4string(shapes) <- CRS("+init=epsg:4326") 
+   
+   return (shapes)
   }
 }
