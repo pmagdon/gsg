@@ -64,7 +64,7 @@ calcforestcover<-function(data)
 #-------------------------------------------------------------------
 # Import raster
 # Forest map extracted from Corine 2012 Raster (100m resolution)
-str_name = "forestmap_germany.tif" 
+str_name = "case_studies/germany/forestmap_germany.tif" 
 imported_raster=raster(str_name)
 
 # Load boundary from GADM
