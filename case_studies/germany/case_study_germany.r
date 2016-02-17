@@ -9,7 +9,7 @@
 #-----------------------------------------------------------------
 # Check if required packages are installed otherwise they wil be installed
 
-packages <- c("raster", "plyr", "sp", "geosphere", "rgeos", "rgdal")
+packages <- c("raster", "plyr", "sp", "geosphere", "rgeos", "rgdal","maptools")
 
 if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
   install.packages(setdiff(packages, rownames(installed.packages())))  
@@ -21,6 +21,7 @@ if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
 
 source("gsg_grid/create_GSG.r")
 source("sampling/clustersampling.r")
+source("io/import.r")
 
 library(raster)
 library(plyr)
@@ -68,9 +69,7 @@ str_name = "case_studies/germany/forestmap_germany.tif"
 imported_raster=raster(str_name)
 
 # Load boundary from GADM
-gadm_url = load(url(paste("http://biogeo.ucdavis.edu/data/gadm2/R/",country_code,"_adm",adm_level,".RData", sep="")))
-landpoly = gadm
-boundary.geo <- spTransform(landpoly, CRS("+init=epsg:4326"))
+boundary.geo <- loadBoundary(,"DEU","0")
 #-------------------------------------------------------------------
 
 progress.bar$init(nr.runs)
