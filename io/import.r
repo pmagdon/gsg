@@ -10,8 +10,7 @@ loadBoundary = function (shapefile,country_code,adm_level){
 
   if(missing(shapefile)){
    # Load boundary from GADM
-   gadm_url = load(url(paste("http://biogeo.ucdavis.edu/data/gadm2/R/",country_code,"_adm",adm_level,".RData", sep="")))
-   landpoly = gadm
+   landpoly = readRDS(url(paste("http://biogeo.ucdavis.edu/data/gadm2.8/rds/",country_code,"_adm",adm_level,".rds", sep="")))
    boundary.geo = spTransform(landpoly, CRS("+init=epsg:4326"))
    return (boundary.geo)
   }
