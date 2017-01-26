@@ -19,7 +19,7 @@ adm_level="0"
 
 pdist.list=c(seq(from=400, to=500, by=100))# in m
 gdist.list=c(seq(from=50, to=60, by=10)) # in km
-germany=readRDS("/home/pmagdon/Downloads/DEU_adm0.rds") 
+germany=readRDS("countries/DEU_adm0.rds") 
 boundary.geo = spTransform(germany, CRS("+init=epsg:4326"))
 GSG=generateGSG(distance=40,landpoly.geo=boundary.geo)
 
