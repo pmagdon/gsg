@@ -5,9 +5,9 @@ library(shiny)
 
 ######################
 
-source("gsg_grid/create_GSG.r")
-source("sampling/clustersampling.r")
-source("io/import.r")
+source("../gsg_grid/create_GSG.r")
+source("../sampling/clustersampling.r")
+source("../io/import.r")
 ##########################
 
 
@@ -19,7 +19,7 @@ adm_level="0"
 
 pdist.list=c(seq(from=400, to=500, by=100))# in m
 gdist.list=c(seq(from=50, to=60, by=10)) # in km
-germany=readRDS("/home/pmagdon/Downloads/DEU_adm0.rds") 
+germany=readRDS(gzcon(url("http://biogeo.ucdavis.edu/data/gadm2.8/rds/DEU_adm0.rds")))
 boundary.geo = spTransform(germany, CRS("+init=epsg:4326"))
 GSG=generateGSG(distance=40,landpoly.geo=boundary.geo)
 
@@ -28,7 +28,7 @@ GSG=generateGSG(distance=40,landpoly.geo=boundary.geo)
 # if the plugin comes with CSS files.)
 bingPlugin <- htmlDependency("leaflet.plugins", "2.0.0",
                             # src = c(href = "https://cdnjs.cloudflare.com/ajax/libs/leaflet-plugins/2.0.0/layer/tile/"),
-                             src = normalizePath('webapp/'),
+                             src = normalizePath('/'),
                              script = "Bing.min.js"
 )
 
@@ -46,15 +46,11 @@ names(r_colors) <- colors()
 
 ui <- fluidPage(
   leafletOutput("mymap"),
-  p(),
-  actionButton("recalc", "New points")
+  p()
+  #actionButton("recalc", "New points")
 )
 
 server <- function(input, output, session) {
-  
-  points <- eventReactive(input$recalc, {
-    cbind(rnorm(40) * 2 + 13, rnorm(40) + 48)
-  }, ignoreNULL = FALSE)
   
   output$mymap <- renderLeaflet({
     leaflet() %>%
