@@ -3,7 +3,7 @@ library(htmltools)
 library(htmlwidgets)
 library(shiny)
 
-######################
+#########################
 
 source("gsg_grid/create_GSG.r")
 source("sampling/clustersampling.r")
